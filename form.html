@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculadora de riesgo de diabetes</title>
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h4 {
+            background-color: #1f83c2; /* Fondo celeste cielo */
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .important {
+            font-weight: bold;
+        }
+        .calcular-riesgo {
+            background-color: #87CEFA; /* Fondo celeste cielo */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calcular-riesgo:hover {
+            background-color: #6495ED; /* Fondo celeste cielo más oscuro al pasar el cursor */
+        }
+        
+    </style>
+
+    <script>
+        function calcularRiesgo() {
+            // Obtener los valores seleccionados por el usuario
+            var edad = parseInt(document.querySelector('input[name="edad"]:checked').value);
+            var imc = parseInt(document.querySelector('input[name="imc"]:checked').value);
+            var perimetro = parseInt(document.querySelector('input[name="perimetro"]:checked').value);
+            var deporte = parseInt(document.querySelector('input[name="deporte"]:checked').value);
+            var frutas = parseInt(document.querySelector('input[name="frutas"]:checked').value);
+            var medicacion = parseInt(document.querySelector('input[name="medicacion"]:checked').value);
+            var glucosa = parseInt(document.querySelector('input[name="glucosa"]:checked').value);
+            var diabetes = parseInt(document.querySelector('input[name="diabetes"]:checked').value);
+            
+            // Calcular el riesgo
+            var riesgo = edad + imc + perimetro + deporte + frutas + medicacion + glucosa + diabetes;
+            
+            // Mostrar el resultado
+            var categoria = "";
+            if (riesgo >= 7 && riesgo <= 11) {
+                categoria = "Riesgo bajo";
+            } else if (riesgo >= 12 && riesgo <= 14) {
+                categoria = "Riesgo moderado";
+            } else if (riesgo > 15) {
+                categoria = "Riesgo muy alto";
+            }
+
+            alert("Tu riesgo de desarrollar diabetes tipo 2 es: " + riesgo +  "= " + categoria );
+        }
+    </script>
+</head>
+
+<body>
+    <h1><center>TEST DE FINDRISK</center></h1>
+    <br>
+    <h4><center>Conoce tu riesgo de desarrollar diabetes tipo 2</center></h4>
+
+    <form>
+        <p><strong class="important"> 1. Edad </strong></p>
+        <input type="radio" name="edad" value="0"> Menos de 35 años <br>
+        <input type="radio" name="edad" value="1"> Entre 35 - 44 años <br>
+        <input type="radio" name="edad" value="2"> Entre 45 - 54 años <br>
+        <input type="radio" name="edad" value="3"> Entre 55 - 44 años <br>
+        <input type="radio" name="edad" value="4"> Más de 64 años <br>
+        <br>
+
+        <p><strong class="important"> 2. Índice de masa corporal (IMC) </strong></p>
+        <input type="radio" name="imc" value="0"> Menos de 25 Kg/m² <br>
+        <input type="radio" name="imc" value="1"> Entre 25 - 30 Kg/m² <br>
+        <input type="radio" name="imc" value="2"> Más de 30 Kg/m² <br>
+        <br>
+
+        <p><strong class="important">3. Perimetro de cintura</strong></p>
+        <p>VARONES</p>
+        <input type="radio" name="perimetro" value="0"> Menos de 94 cm <br>
+        <input type="radio" name="perimetro" value="3"> Entre 94 - 102 cm <br>
+        <input type="radio" name="perimetro" value="4"> Más de 102 cm <br>
+        <br>
+        <p>MUJERES</p>
+        <input type="radio" name="perimetro" value="0"> Menos de 80 cm <br>
+        <input type="radio" name="perimetro" value="3"> Entre 80 - 88 cm <br>
+        <input type="radio" name="perimetro" value="4"> Más de 88 cm <br>
+        <br>
+
+        <p><strong class="important">4. ¿Realiza habitualmente 30 minutos de actividad física cada día en el trabajo y/o en su tiempo libre (incluida la actividad diaria normal)?</strong></p>        
+        <input type="radio" name="deporte" value="0"> Sí<br>
+        <input type="radio" name="deporte" value="1"> No <br>
+        <br>
+        
+        <p><strong class="important">5. ¿Con qué frecuencia come verduras o frutas?</strong></p>
+        <input type="radio" name="frutas" value="0"> Todos los días <br>
+        <input type="radio" name="frutas" value="1"> No todos los días <br>
+
+        <p><strong class="important">6. ¿Toma medicación para la hipertensión regularmente?</strong></p>
+        <input type="radio" name="medicacion" value="0"> Sí <br>
+        <input type="radio" name="medicacion" value="1"> No <br>
+
+        <p><strong class="important">7. ¿Le han encontrado alguna vez niveles altos de glucosa en sangre, por ejemplo, en un examen médico, duranta una enfermedad, durante el embarazo?</strong></p>
+        <input type="radio" name="glucosa" value="0"> Sí <br>
+        <input type="radio" name="glucosa" value="1"> No <br>
+
+        <p><strong class="important">8. ¿A algún miembro de su familia le han
+             diagnosticado diabetes (tipo 1 o tipo 2)? </strong></p>
+        <input type="radio" name="diabetes" value="0"> No<br>
+        <input type="radio" name="diabetes" value="3"> Sí: abuelos, tíos o primos-hermanos (pero no: padres, hermanos o hijos) <br>
+        <input type="radio" name="diabetes" value="5"> Sí: padres, hermanos o hijos <br>
+        <br>
+        <br>
+        <!-- Resto de preguntas -->
+
+        <input type="button" value="Calcular riesgo" class="calcular-riesgo" onclick="calcularRiesgo()">
+    </form>
+
+    <div id="resultado"></div>
+</body>
+</html>
